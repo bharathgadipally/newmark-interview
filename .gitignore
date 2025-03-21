@@ -1,0 +1,63 @@
+# ------------------------------
+# .NET (API)
+# ------------------------------
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+*.vs/
+*.vscode/
+.vs/
+*.dbmdl
+
+# Publish outputs
+**/publish/
+**/dist/
+
+# Secrets & environment
+appsettings.Development.json
+appsettings.*.json
+secrets.json
+
+# ------------------------------
+# Node (Frontend)
+# ------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+.env
+.env.local
+.vite/
+.cache/
+
+# ------------------------------
+# Docker
+# ------------------------------
+**/Dockerfile
+docker-compose.override.yml
+docker-compose.debug.yml
+
+# ------------------------------
+# System files
+# ------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
+.idea/
+*.iml
+
+# ------------------------------
+# Logs
+# ------------------------------
+*.log
+logs/
+*.log.*

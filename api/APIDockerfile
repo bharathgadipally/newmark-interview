@@ -1,0 +1,29 @@
+# Use the official .NET SDK image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Set the working directory
+WORKDIR /source
+
+# Copy the entire directory structure
+COPY . .
+
+# Restore dependencies using the correct path to the .csproj file
+RUN dotnet restore "api/Newmark.PropertyManagement.Api/Newmark.PropertyManagement.Api.csproj"
+
+# Build the project
+RUN dotnet build "api/Newmark.PropertyManagement.Api/Newmark.PropertyManagement.Api.csproj" -c Release -o /app/build
+
+# Publish the project
+RUN dotnet publish "api/Newmark.PropertyManagement.Api/Newmark.PropertyManagement.Api.csproj" -c Release -o /app/publish
+
+# Use the official .NET runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the published output from the build stage
+COPY --from=build /app/publish .
+
+# Set the entry point for the application
+ENTRYPOINT ["dotnet", "Newmark.PropertyManagement.Api.dll"]
