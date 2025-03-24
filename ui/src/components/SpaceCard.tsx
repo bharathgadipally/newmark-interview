@@ -15,7 +15,7 @@ const SpaceCard = ({ space }: SpaceCardProps) => {
         className="flex cursor-pointer items-center justify-between bg-gray-100 p-4 transition hover:bg-gray-200"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <h2 className="text-base font-medium">{space.name}</h2>
+        <h2 className="text-base font-medium">{space.spaceName}</h2>
         <span className="text-gray-500">{isExpanded ? '▼' : '▶'}</span>
       </div>
 

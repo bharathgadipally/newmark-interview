@@ -28,7 +28,7 @@ const RentRollTable = ({ rentRoll }: RentRollTableProps) => {
             <tr key={index} className="border-b transition hover:bg-gray-50">
               <td className="px-4 py-2 text-left text-sm">{rent.month}</td>
               <td className="px-4 py-2 text-right text-sm font-medium">
-                ${rent.amount.toLocaleString()}
+                ${rent.rent.toLocaleString()}
               </td>
             </tr>
           ))}

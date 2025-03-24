@@ -1,13 +1,13 @@
 interface FeaturesListProps {
   title: string
-  items: string[]
+  items?: string[] // made optional for extra safety
   className?: string
   badgeVariant?: 'default' | 'secondary' | 'outline' | 'destructive'
 }
 
 const FeaturesList = ({
   title,
-  items,
+  items = [],
   className,
   badgeVariant = 'default'
 }: FeaturesListProps) => {
@@ -24,7 +24,7 @@ const FeaturesList = ({
     <div className={`space-y-2 ${className}`}>
       <h4 className="text-sm font-medium text-gray-600">{title}</h4>
       <div className="flex flex-wrap gap-2">
-        {items.map((item, index) => (
+        {(items || []).map((item, index) => (
           <span
             key={index}
             className={`rounded-full px-3 py-1 text-sm ${badgeStyles[badgeVariant]}`}

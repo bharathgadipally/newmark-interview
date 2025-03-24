@@ -1,19 +1,28 @@
 export interface RentRoll {
   month: string
-  amount: number
+  rent: number
 }
 
 export interface Space {
-  name: string
+  spaceId: string
+  spaceName: string
   rentRoll: RentRoll[]
 }
 
 export interface Property {
-  name: string
+  propertyId: string
+  propertyName: string
   features: string[]
-  highlights: string[]
-  transportation: string[]
+  hightlights: string[]
+  transportation: Transportation[]
   spaces: Space[]
+}
+
+export interface Transportation {
+  type: string,
+  line: string,
+  distance: string,
+  station: string
 }
 
 export interface PropertyResponse {

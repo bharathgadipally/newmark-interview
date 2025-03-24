@@ -20,7 +20,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           <div className="flex size-10 items-center justify-center rounded-full bg-blue-100 text-blue-600">
             🏢
           </div>
-          <h2 className="text-xl font-medium">{property.name}</h2>
+          <h2 className="text-xl font-medium">{property.propertyName}</h2>
         </div>
         <span className="text-gray-500">
           {isExpanded ? '▼' : '▶'}{' '}
@@ -45,14 +45,34 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
               />
               <FeaturesList
                 title="Highlights"
-                items={property.highlights}
+                items={property.hightlights}
                 badgeVariant="secondary"
               />
-              <FeaturesList
-                title="Transportation"
-                items={property.transportation}
-                badgeVariant="default"
-              />
+              <div>
+                <h3 className="mb-2 text-lg font-semibold">Transportation</h3>
+                <div className="overflow-auto">
+                  <table className="min-w-full text-sm text-left border border-gray-200">
+                    <thead className="bg-gray-100">
+                      <tr>
+                        <th className="px-4 py-2 border">Type</th>
+                        <th className="px-4 py-2 border">Line</th>
+                        <th className="px-4 py-2 border">Distance</th>
+                        <th className="px-4 py-2 border">Station</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {property.transportation.map((t, index) => (
+                        <tr key={index} className="border-t">
+                          <td className="px-4 py-2 border">{t.type}</td>
+                          <td className="px-4 py-2 border">{t.line}</td>
+                          <td className="px-4 py-2 border">{t.distance}</td>
+                          <td className="px-4 py-2 border">{t.station}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
             <SpaceList spaces={property.spaces} />
           </div>
