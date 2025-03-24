@@ -4,10 +4,25 @@ namespace Newmark.PropertyManagement.Domain
 {
     public class Property
     {
-        public string Name { get; set; }
-        public List<string> Features { get; set; }
-        public List<string> Highlights { get; set; }
-        public List<string> Transportation { get; set; }
-        public List<Space> Spaces { get; set; }
+        public string PropertyId { get; set; }
+        public string PropertyName { get; set; }
+        public string[] Features { get; set; }
+        public string[] Highlights { get; set; }
+        public Transportation[] Transportation { get; set; }
+        public Space[] Spaces { get; set; }
+    }
+
+    public class PropertyResponse
+    {
+        public Property[] Properties { get; set; }
     }
 }
+
+
+
+
+
+
+
+
+

@@ -1,23 +1,28 @@
-﻿namespace Newmark.PropertyManagement.Application.DTOs
+﻿using Newmark.PropertyManagement.Domain;
+using Newmark.PropertyManagement.Domain.Models;
+
+namespace Newmark.PropertyManagement.Application.DTOs
 {
     public class PropertyResponseDto
     {
-        public string Name { get; set; }
-        public List<string> Features { get; set; }
-        public List<string> Highlights { get; set; }
-        public List<string> Transportation { get; set; }
-        public List<SpaceResponseDto> Spaces { get; set; }
+        public string PropertyId { get; set; }
+        public string PropertyName { get; set; }
+        public string[] Features { get; set; }
+        public string[] Highlights { get; set; }
+        public Transportation[] Transportation { get; set; }
+        public Space[] Spaces { get; set; }
     }
 
     public class SpaceResponseDto
     {
-        public string Name { get; set; }
-        public List<RentRollResponseDto> RentRoll { get; set; }
+        public string SpaceId { get; set; }
+        public string SpaceName { get; set; }
+        public Rentroll[] RentRoll { get; set; }
     }
 
     public class RentRollResponseDto
     {
         public string Month { get; set; }
-        public decimal Amount { get; set; }
+        public int Rent { get; set; }
     }
 }

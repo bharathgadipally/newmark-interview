@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newmark.PropertyManagement.Domain;
 using Newmark.PropertyManagement.Services.Implementations;
@@ -10,11 +12,13 @@ namespace Newmark.PropertyManagement.Services
     {
         private readonly string _blobUrl;
         private readonly AzureKeyVaultService _keyVaultService;
+        private readonly string _sasToken;
         private readonly ILogger<PropertyBlobRepository> _logger;
 
         public PropertyBlobRepository(IConfiguration configuration, AzureKeyVaultService keyVaultService, ILogger<PropertyBlobRepository> logger)
         {
             _blobUrl = configuration["AzureBlob:Url"];
+            _sasToken = configuration["AzureBlob:SASToken"];
             _keyVaultService = keyVaultService;
             _logger = logger;
         }
@@ -26,22 +30,23 @@ namespace Newmark.PropertyManagement.Services
                 //TODO: enable after the Blob storage works
 
                 //string sasToken = await _keyVaultService.GetSecretAsync("AzureStorageSasToken");
-                //var blobClient = new BlobClient(new Uri($"{_blobUrl}{sasToken}"));
-                //BlobDownloadInfo download = await blobClient.DownloadAsync();
+                var blobUri = $"{_blobUrl}{_sasToken}";
+                var blobClient = new BlobClient(new Uri(blobUri));
+                BlobDownloadInfo download = await blobClient.DownloadAsync();
 
-                //using (StreamReader reader = new StreamReader(download.Content))
-                //{
-                //    string jsonData = await reader.ReadToEndAsync();
-                //    return JsonConvert.DeserializeObject<List<Property>>(jsonData);
-                //}
+                using (StreamReader reader = new StreamReader(download.Content))
+                {
+                    string jsonData = await reader.ReadToEndAsync();
+                    return JsonConvert.DeserializeObject<List<Property>>(jsonData);
+                }
 
-                using StreamReader reader = new StreamReader("testdata.json");
-                string jsonData = await reader.ReadToEndAsync();
-                var propertyDtoList = JsonConvert.DeserializeObject<PropertyDtoWrapper>(jsonData);
+                //using StreamReader reader = new StreamReader("testdata.json");
+                //string jsonData = await reader.ReadToEndAsync();
+                //var propertyDtoList = JsonConvert.DeserializeObject<PropertyDtoWrapper>(jsonData);
 
-                var properties = propertyDtoList.Properties;
+                //var properties = propertyDtoList.Properties;
 
-                return properties;
+                //return properties;
 
             }
             catch (Exception ex)

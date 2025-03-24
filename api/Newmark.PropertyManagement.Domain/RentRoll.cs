@@ -1,8 +1,8 @@
 ﻿namespace Newmark.PropertyManagement.Domain.Models
 {
-    public class RentRoll
+    public class Rentroll
     {
         public string Month { get; set; }
-        public decimal Amount { get; set; }
+        public int Rent { get; set; }
     }
 }

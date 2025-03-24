@@ -11,11 +11,11 @@ namespace Newmark.PropertyManagement.Api
         {
             CreateMap<Property, PropertyResponseDto>();
             CreateMap<Space, SpaceResponseDto>();
-            CreateMap<RentRoll, RentRollResponseDto>();
+            CreateMap<Rentroll, RentRollResponseDto>();
 
             CreateMap<PropertyResponseDto, Property>();
             CreateMap<SpaceResponseDto, Space>();
-            CreateMap<RentRollResponseDto, RentRoll>();
+            CreateMap<RentRollResponseDto, Rentroll>();
         }
     }
 }

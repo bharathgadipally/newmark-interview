@@ -2,7 +2,8 @@
 {
     public class Space
     {
-        public string Name { get; set; }
-        public List<RentRoll> RentRoll { get; set; }
+        public string SpaceId { get; set; }
+        public string SpaceName { get; set; }
+        public Rentroll[] RentRoll { get; set; }
     }
 }
